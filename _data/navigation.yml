@@ -4,6 +4,26 @@ main:
     url: /categories/
   - title: "Tag"
     url: /tags/
+  
+docs:
+  - title: "Computer Science"
+    children:
+      - title: "Algorithm"
+        url: /docs/algorithm
+      - title : "CS"
+        url: /docs/CS
+
+  - title: "Engineering"
+    children:
+      - title: "FFT"
+        url: /docs/FFT
+  
+  - title: "Error"
+    children:
+      - title: "Github_io"
+        url: /docs/Github_io
+    
+
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
