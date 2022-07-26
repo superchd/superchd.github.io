@@ -8,14 +8,23 @@ main:
     url: /search/
   
 docs:
-  - title: "Computer Science"
+  - title: "Algorithm"
     children:
-      - title: "Algorithm"
-        url: /docs/algorithm
-      - title : "CS"
-        url: /docs/CS
-      - title : "Artificial_Intelligence"
-        url: /docs/AI
+      - title: "DFS"
+        url: /docs/DFS
+
+  - title : "Artificial_Intelligence"
+    children:
+      - title: "AI Basic"
+        url: /docs/AI_Basic  
+    url: /docs/AI
+
+  - title : "CS"
+    children:
+      - title: "Operating System"
+        url: /docs/OS
+      - title: "Computer Architecture"
+        url: /docs/computer_architecture
 
   - title: "Engineering"
     children:

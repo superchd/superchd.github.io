@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Deeplearning 기초 학습법"
+title: "Deeplearning"
 categories : Artificial_Intelligence
 tag: [Artificial_Intelligence, Deeplearning]
 toc: true
