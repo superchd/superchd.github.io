@@ -81,3 +81,63 @@ for t in tickets:
 >> * 정말 심플하게 짯다... 
 >> 2. 시작 조건이 ICN으로 고정되게 stack 자료구조 선언, 그리고 stack이 모두 찼을때, 최종경로를 기록할 path도 선언
 >> 3. stack에 아무 원소가 없을때까지, 반복!   
+
+> ## 궁금점
+
+```python
+
+def solution(tickets):
+    answer = []
+    
+    trip = {}
+    for t in tickets:
+        trip[t[0]] = trip.get(t[0], []) + [t[1]]
+    
+    for t in trip:
+        trip[t].sort(reverse = True)
+    
+    print(trip)
+    
+    stack = ['ICN']
+    
+    while len(stack) > 0:
+        prev = stack[-1]
+        if prev not in trip or trip.get(prev) == []:
+            break
+        else :
+            next = trip[prev][-1]
+            stack.append(next)
+            trip[prev].pop()
+        
+    return stack
+```
+>> * 이 코드는 왜 작동안해?
+
+```python
+def solution(tickets):
+    answer = []
+    
+    trip = {}
+    for t in tickets:
+        trip[t[0]] = trip.get(t[0], []) + [t[1]]
+    
+    for t in trip:
+        trip[t].sort(reverse = True)
+    
+    print(trip)
+    
+    stack = ['ICN']
+    path = []
+    while len(stack) > 0:
+        prev = stack[-1]
+        if prev not in trip or trip.get(prev) == []:
+            path.append(stack.pop())
+        else :
+            next = trip[prev][-1]
+            stack.append(next)
+            trip[prev].pop()
+        
+    return path[::-1]
+```
+
+>> * 이건 또 작동한단 말이야... 무슨 문제야? 
