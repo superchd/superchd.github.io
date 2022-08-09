@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Gradient Descent"
+title: "Linear Regression"
 categories : Artificial_Intelligence
 tag: [Artificial_Intelligence, tensor, linear_regression]
 toc: true

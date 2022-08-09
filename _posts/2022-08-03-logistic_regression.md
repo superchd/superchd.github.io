@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Gradient Descent"
+title: "Logistic Regression"
 categories : Artificial_Intelligence
 tag: [Artificial_Intelligence, logistic_regression, cross_entropy]
 toc: true
@@ -8,10 +8,7 @@ author_profile : false
 use_math: true
 sidebar:
      nav: "docs"
-
 ---
-
-### 
 
 ## Logistic Regression
 

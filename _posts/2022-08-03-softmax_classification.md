@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Gradient Descent"
+title: "Softmax Classification"
 categories : Artificial_Intelligence
 tag: [Artificial_Intelligence, softmax, cross_entropy]
 toc: true
