@@ -1,7 +1,7 @@
 ---
 layout: single
-title: "DFS"
-categories : Algorithm
+title: "Ticket"
+categories : Algorithm/DFS
 tag: [Algorithm, DFS, programmers]
 toc: true
 author_profile : false
@@ -10,7 +10,7 @@ sidebar:
      nav: "docs"
 ---
 
-# ticket문제 
+# DFS 
 
 > ## 문제에서 어려웠던 점
 > * 딕셔너리로 자료구조를 제작했는데, 키가 중복되어 이를 어떻게 처리할까 고민을 많이 했다.
