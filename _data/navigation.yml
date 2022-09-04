@@ -4,20 +4,26 @@ main:
     url: /categories/
   - title: "Tag"
     url: /tags/
+  - title: "Docs"
+    url: /docs/
   - title: "Search"
     url: /search/
   
 docs:
   - title: "Algorithm"
     children:
+      - title: "Greedy"
+        url: /categories/#algorithm-greedy
+      - title: "Brute Force"
+        url: /categories/#algorithm-brute-force
       - title: "DFS"
-        url: /docs/DFS
-
-  - title : "Artificial_Intelligence"
-    children:
-      - title: "AI Basic"
-        url: /docs/AI_Basic  
-    url: /docs/AI
+        url: /categories/#algorithm-dfs
+      - title: "BFS"
+        url: /categories/#algorithm-bfs
+      - title: "Dynamic Programming"
+        url: /categories/#algorithm-DP
+      - title: "Simulation"
+        url: /categories/#algorithm-simulation
 
   - title : "CS"
     children:
@@ -25,12 +31,21 @@ docs:
         url: /docs/OS
       - title: "Computer Architecture"
         url: /docs/computer_architecture
+      - title: "Database"
+        url: /docs/Database
+      - title: "Network"
+        url: /docs/Network
 
   - title: "Engineering"
     children:
       - title: "FFT"
         url: /docs/FFT
   
+  - title : "Artificial_Intelligence"
+    children:
+      - title: "AI Basic"
+        url: /categories/#artificial-intelligence 
+
   - title: "Error"
     children:
       - title: "Github_io"
