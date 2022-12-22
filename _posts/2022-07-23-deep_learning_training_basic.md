@@ -7,7 +7,7 @@ toc: true
 author_profile : false
 use_math: true
 sidebar:
-     nav: "docs"
+     nav: "docs/Deeplearning"
 ---
 
 # 딥러닝의 학습 방법
