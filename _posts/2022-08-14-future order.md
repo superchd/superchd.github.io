@@ -1,15 +1,15 @@
 ---
+​---
 layout: single
-title: "8월 14일 슈팅하는 코인 놓침"
-categories : Coin
-tag: [hbarusdt, shooting]
+title: "감옥"
+categories : Algorithm/BFS
+tag: [Algorithm, bfs, space_station, recursive]
 toc: true
 author_profile : false
 use_math: true
 sidebar:
      nav: "docs"
-
-
+​---
 ---
 
 
