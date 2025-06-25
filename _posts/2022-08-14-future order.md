@@ -1,5 +1,4 @@
 ---
-​---
 layout: single
 title: "감옥"
 categories : Algorithm/BFS
@@ -9,7 +8,6 @@ author_profile : false
 use_math: true
 sidebar:
      nav: "docs"
-​---
 ---
 
 
