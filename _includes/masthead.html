@@ -1,5 +1,5 @@
 {% capture logo_path %}{{ site.logo }}{% endcapture %}
-{% assign resolved_title = site.masthead_title | default: site.title %}
+{% assign resolved_title = site.masthead_title | default: site.title | strip %}
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
@@ -11,7 +11,7 @@
           </a>
         {% endunless %}
 
-        {% if resolved_title %}
+        {% if resolved_title and resolved_title | size > 0 %}
           <a class="site-title" href="{{ '/' | relative_url }}">
             {{ resolved_title }}
             {% if site.subtitle %}
@@ -23,26 +23,20 @@
         <ul class="visible-links">
           {%- for link in site.data.navigation.main -%}
             <li class="masthead__menu-item">
-              <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description }}"{% endif %}>
-                {{ link.title }}
-              </a>
+              <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description }}"{% endif %}>{{ link.title }}</a>
             </li>
           {%- endfor -%}
         </ul>
 
         {% if site.search == true %}
           <button class="search__toggle" type="button">
-            <span class="visually-hidden">
-              {{ site.data.ui-text[site.locale].search_label | default: "Toggle search" }}
-            </span>
+            <span class="visually-hidden">{{ site.data.ui-text[site.locale].search_label | default: "Toggle search" }}</span>
             <i class="fas fa-search"></i>
           </button>
         {% endif %}
 
         <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">
-            {{ site.data.ui-text[site.locale].menu_label | default: "Toggle menu" }}
-          </span>
+          <span class="visually-hidden">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle menu" }}</span>
           <div class="navicon"></div>
         </button>
         <ul class="hidden-links hidden"></ul>
