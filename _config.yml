@@ -16,17 +16,17 @@ minimal_mistakes_skin    : "sunrise" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "현대의 기록"
+title                    : "Hyundae's Note"
 title_separator          : "|"
-subtitle                 : " "
-name                     : "Home"
-description              : "현대의 블로그입니다"
+subtitle                 : "Journey of Control Engineer"
+name                     : "Hyundae's Note" 
+description              : "Hyundae's Note"
 url                      : "https://superchd.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : 
-masthead_title           : "Hyundae" # overrides the website title displayed in the masthead, use " " for no title
+masthead_title           : "Home" # overrides the website title displayed in the masthead, use " " for no title
 breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
 comments:
