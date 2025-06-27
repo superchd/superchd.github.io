@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "An Application of Model Reference Adaptive Control for Multi-Agent Synchronization in Drone Networks"
-categories : Control 
+categories : Control/publications
 tag: [control, loop, thesis, network, DMRAC, multi-agent]
 toc: true
 author_profile : false
