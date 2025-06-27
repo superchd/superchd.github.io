@@ -127,8 +127,3 @@
 * $$
   {P(z_t^1, ....,z_t^k|x_t, m)} = \prod_{k=1}^K p(z_t^k|x_t,m)
   $$
-
-* With x_t, m , we estimate psudo range z_t^*
-
-* 
-
