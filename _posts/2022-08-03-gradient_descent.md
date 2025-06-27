@@ -10,111 +10,112 @@ sidebar:
      nav: "docs"
 ---
 
+## Gradient Descent
 
+* **Intuition**: Imagine you're lost in the mountains — how would you find the lowest point? Just keep walking in the direction with the steepest downward slope. That’s the essence of gradient descent.
 
-## 경사하강법
+* **Goal**: To find the minimum of a function, especially useful when the function is not closed-form or hard to differentiate analytically.
 
-* 직관적의미 : 길을 잃었을때 어떻게 하면 가장 낮은곳을 내려갈수 있는가? 기울기가 가장 낮은 방향으로 한걸음 한걸음 하면 성공!
+* **Mathematical Derivation**: How do we determine where to move `x` to reach the minimum?
 
-* 목적: 함수의 최솟값 찾을때, 굳이 쓰는 이유는 함수가 닫힌 형태가 아니거나 미분계수 구하기 어려운 경우
+* When dealing with vector variables, use **partial derivatives**.
 
-* 수식유도: x의 값을 어디로 옮길 때 최솟값을 가지게 되는지??
+* The closer you are to the minimum, the **smaller the steps** you should take.
 
-* 변수가 벡터인경우에 편미분을 사용
+* Compute the **gradient vector** using partial derivatives for each variable and use this in gradient descent.
 
-* 최솟값에 가까울 수록 조심조심히 움직여야함
+* The **negative gradient vector** points in the direction of the steepest descent. We often normalize it (use its norm).
 
-* 각 변수 별로 편미분을 계산한 그래디언트 벡터를 경사하강법에 사용가능
+* Let’s apply gradient descent to **linear models**. While Moore-Penrose pseudoinverse works for linear models, gradient descent also works for **nonlinear** ones.
 
-* 그래디언트 벡터에 음수를 취하면, 각 점마다 최솟점을 향하는 방향으로의 벡터로 볼 수있다. (이때는 Norm을 사용한다.)
+* **Why use the gradient vector?**
+  > In any space, the gradient vector at a point indicates the direction toward the minimum. Use this to move toward lower cost.
 
-* 경사하강법을 이용해 선형모델을 찾아보자 → 무어테러즈 역행렬은 선형모델에서만, 경사하강법은 선형적이지 않은 모델에서도 활용가능
+### Objective Function for Linear Regression
 
-* 그래디언트 벡터를 쓰는 이유
-
-  >다음의 공간에서 그래디언트 벡터는 각 점에서 최솟값으로 향하는 방향이다. 이 방향을 이용해 공간에서의 최솟값을 찾는다.
-
-* 선형회귀의 목적식
-
-  >y: 주어진 데이터에서 정답이라고 여겨지는것
-  >
-  >선형모델 :  x * beta 행렬 
-  >
-  >목적 : 2차 norm의 최솟값을 찾기 
-  >
-  >**다음과 같은 목적식을 최소화해야함**
+> `y`: the target output in our dataset  
+>
+> Linear model: `X * beta`  
+>
+> Goal: Minimize the **L2 norm** of the difference  
+>
+> The objective function to minimize:
 
 $$
 \lVert  y - X\beta  \rVert_2
 $$
-* 선형회귀의 목적식을 미분을 이용해 풀기
 
-> > 그래디언트 벡터로 다음과 같이 나타낸다. 
+* We solve the objective function using derivatives:
 
->> (t+1). 번째 값을 구하려면 t번째 값에서 그래디언트 벡터를 빼준다.
+> Represented using the **gradient vector**  
 >
->> 이론적으로, 경사하강법은 미분가능하고 convex한 함수에 대해서는 수렴이 보장된다.
+> To get the (t+1)th value, subtract the gradient from the t-th value  
 >
->> 하지만, **비선형회귀 문제의 경우에는 convex가 보장되지 않는다** -> **문제**
+> Theoretically, gradient descent **converges** for differentiable and convex functions  
 >
->> 대책 :  **확률적 경사하강법의 등장!**
+> However, for **nonlinear regression problems**, convexity is **not guaranteed** → **Problem**  
 >
->> 데이터의 일부만 사용하지만, 데이터의 일부만 사용해도 모든 데이터를 사용한 방법과 유사하다. 딥러닝의 경우에는 sgd가 더 낫다. 연산량 감소가 혁명적으로 일어난다.
+> **Solution**: **Stochastic Gradient Descent (SGD)**  
+>
+> Even though it uses only a portion of the data, its performance is often comparable to using the full dataset.  
+> In deep learning, SGD is preferred due to **drastically reduced computation**.
 
-* 경사하강법 예시1(하나의 정보로부터 숫자하나를 예측하는 모델)
+---
 
-  >* 다음과 같이 hours와 points가 주어졌을때, 어떻게 모델의 좋고 나쁨을 판단할것인가?
-  >
-  >* cost function(예측값과 실제값의 차이) 으로 좋고 나쁨을 판단한다.
-  >* cost function은 w에 관한 2차함수이며, cost function을 최소화하기 위해서는 미분을 이용한다. 이때, 기울기가 음수일땐 w가 더 커져야하고, 기울기가 양수일때는 w가 더 작아져야함. gradient를 이용해 cost를 줄인다. 
+### Example 1: Predicting a Value from One Input
 
-* Minibatch gradient descent (전체데이터를 쓰지말고, 일부데이터만 학습하자)
+> * Given data like `hours` and `points`, how do we evaluate model quality?  
+> * We use a **cost function** (difference between predicted and actual values).  
+> * The cost function is a quadratic function with respect to `w`.  
+>   - If the slope is negative → increase `w`.  
+>   - If the slope is positive → decrease `w`.  
+> * Use the **gradient** to reduce the cost.
 
-  >* 업데이트를 빠르게 할수 있다. 
-  >* 전체 데이터를 쓰지않아 잘못된 방향으로 업데이트 할 수 도 있다. 
+---
 
-* Batch size matter
+### Minibatch Gradient Descent
 
-  >* Batch size가 줄어들게 되면, 일반적으로 generalizing performance가 좋아진다. 
-  >* 어떻게 하면 large batch size를 활용할까?
+> * Learn using only a subset of the dataset instead of the entire dataset.  
+> * This allows for **faster updates**, though there's a risk of updates in the wrong direction.
 
-* Momentum
+---
 
-  >* 어떻게 하면 더 좋은 성능을 나오게 할 수 있을까?
-  >* 한번 gradient가 a방향으로 흐르면, 그 방향을 좀 더 이용하자.<img src="../images/2022-08-03-gradient_descent/스크린샷 2022-08-04 오후 3.47.20.png" alt="스크린샷 2022-08-04 오후 3.47.20" style="zoom: 33%;" />
+### Why Batch Size Matters
 
+> * Smaller batch sizes tend to improve **generalization performance**.  
+> * How can we still take advantage of **large batch sizes**?
 
+---
 
+### Momentum
 
+> * How can we further improve performance?  
+> * If the gradient flows in a particular direction, **keep some of that direction** for the next update.  
+> <img src="../images/2022-08-03-gradient_descent/스크린샷 2022-08-04 오후 3.47.20.png" alt="momentum" style="zoom: 33%;" />
+
+---
 
 ## Regularization
 
-* 정의 : 학습데이터에 규제를 걸어준다. 테스트 데이터에도 모델이 잘 적용될 수 있도록!
+* **Definition**: Apply constraints to training data so the model generalizes well to unseen test data.
 
-* 방법:
+* **Methods**:
 
-  >* Early stopping
+  > * **Early Stopping**  
+  >   Stop training early and validate on held-out data.
   >
-  >  >빨리 멈추고, validation data로 한번 테스트 해봄.
+  > * **Parameter Norm Penalty**  
+  >   <img src="../images/2022-08-03-gradient_descent/스크린샷 2022-08-04 오후 4.02.56.png" alt="norm penalty" style="zoom:25%;" />  
+  >   Encourage smaller weights during training.
   >
-  >* Parameter norm penalty
+  > * **Data Augmentation**  
+  >   Increase training data by transforming inputs while preserving labels.
   >
-  >  ><img src="../images/2022-08-03-gradient_descent/스크린샷 2022-08-04 오후 4.02.56.png" alt="스크린샷 2022-08-04 오후 4.02.56" style="zoom:25%;" />이왕이면, 네트워크를 학습할때 그 숫자들이 작으면 좋다.
+  > * **Noise Robustness**  
+  >   Inject noise into weights or inputs during training.
   >
-  >* Data Augmentation
+  > * **Label Smoothing**  
+  >   Blend labels — mix two samples and their labels accordingly.
   >
-  >  >데이터가 많아질수록 학습이 잘될 확률이 올라간다. 그래서 데이터 label이 바뀌지 않는 선에서, 데이터를 변환시켜서 데이터의 수를 늘리는 방법 
-  >
-  >* Noise robustness
-  >
-  >  >noise를 중간중간에 집어넣음 (weight도, input도)
-  >
-  >* Label smoothing
-  >
-  >  >데이터를 2개 섞어 -> label도 섞어 
-  >
-  >* Dropout
-  >
-  >  >
-  >  >
-  >  >
+  > * **Dropout**  
+  >   Randomly drop units during training to prevent overfitting.

@@ -11,10 +11,7 @@ sidebar:
 
 ---
 
-## 
-
 ## Deeplearning
-
 
 
 <img src="../images/2022-08-04-deep_learning_basic/스크린샷 2022-08-04 오후 12.50.50.png" alt="스크린샷 2022-08-04 오후 12.50.50" style="zoom:50%;" />

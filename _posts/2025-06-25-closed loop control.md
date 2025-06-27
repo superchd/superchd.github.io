@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "close_loop/github_io"
+title: "Closed Loop Control"
 categories : Control 
 tag: [control, loop]
 toc: true

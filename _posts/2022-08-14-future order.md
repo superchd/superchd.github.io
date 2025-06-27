@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "감옥"
-categories : Algorithm/BFS
+categories : Algorithm
 tag: [Algorithm, bfs, space_station, recursive]
 toc: true
 author_profile : false

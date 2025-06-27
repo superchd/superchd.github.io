@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "우주정거장"
-categories : Algorithm/Divide_Conquer
+categories : Algorithm
 tag: [Algorithm, binary_search, implementation, space_station, CHO, recursive, divide_conquer]
 toc: true
 author_profile : false
