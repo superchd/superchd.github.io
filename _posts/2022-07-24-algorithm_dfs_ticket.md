@@ -10,17 +10,17 @@ sidebar:
      nav: "docs"
 ---
 
-# DFS 
+# DFS
 
-> ## 문제에서 어려웠던 점
-> * 딕셔너리로 자료구조를 제작했는데, 키가 중복되어 이를 어떻게 처리할까 고민을 많이 했다.
->> 1. 클래스를 선언해서 키중복 막기 
+> ## What Was Difficult in the Problem
+> * I created a data structure using a dictionary, but struggled a lot with how to handle **duplicate keys**.
+>> 1. Tried declaring a class to avoid key duplication:
 
 ```python
-  class ticket(object):
+class ticket(object):
     def __init__(self, depart):
         self.depart = depart
-    # 클래스니까 출력 포맷을 정한다.
+    # Since it's a class, define its print format
     def __str__(self):
         return self.depart
     def __repr__(self):
@@ -33,16 +33,20 @@ def pre_process(tickets):
         data[ticket(t[0])] = t[1]
     return data
 ```
->>> 다음과 같이 풀게되면, 키를 이용해서 딕셔너리에서 val를 찾을 때 문제가 생긴다. 아마 ticket(v)할때마다, v가 같더라고 하더라도 객체를 생성하면서 
->>> 객체마다 주소가 달라지니까 val를 찾지못한다.
+
+>>> When implemented like this, you run into problems retrieving `val` from the dictionary using a key.  
+>>> Even if `v` is the same, every call to `ticket(v)` creates a new object with a different memory address, so the value can't be found.
+
 ```python
- for v in val:
-        if data.get(ticket(v)) == None:
-            print(f"v = {v}, get(v) = {data.get(v)}")
-            first = v
-            break
+for v in val:
+    if data.get(ticket(v)) == None:
+        print(f"v = {v}, get(v) = {data.get(v)}")
+        first = v
+        break
 ```
->> 2. val가 여러개라면 val를 리스트화하기(정말 머리많이 써서 만든 코드이다..)
+
+>> 2. If a key has multiple values, I tried storing the values as a list (this took a lot of thinking to figure out...):
+
 ```python
 def pre_process(tickets):
     data = {}
@@ -52,92 +56,100 @@ def pre_process(tickets):
 
         if data.get(t[0]) == None:
             data[t[0]] = t[1]
-        else :
+        else:
             if type(data[t[0]]) == str:
                 ex.append(data[t[0]])
                 ex.append(t[1])
                 data[t[0]] = ex
-            else :
+            else:
                 for d in data[t[0]]:
                     ex.append(d)
-                    ex.append(d[1])
-                    data[t[0]] = ex 
+                    ex.append(t[1])
+                    data[t[0]] = ex
 
     return data
 ```
->>> 그런데, 좀 어려웠던게 파이썬이 val가 하나일때, 그리고 지금 리스트로 이미 여러개가 val일때를 구분하지 못하니까, 이걸 처리하는데 애를 좀 먹었다....
-> * 처음 출발점과 도착점을 정의하면 문제풀기 쉽다고 생각했는데, 한 도시를 여러번 방문할 경우, 출발점과 도착점을 찾을 수 없어서 여기서 시간을 많이보냈다.
-> 아마, 출발점과 도착점을 굳이 찾지말고 연결리스트를 이용해서 문제를 푸는게 이 문제의 의도같다. 
 
+>>> The tricky part was that Python doesn’t clearly distinguish when `val` is a single string versus when it’s already a list of multiple values, which made handling both cases quite challenging...
 
-> ## 정석풀이
-> * dfs와 스택을 이용하는 전형적인 문제 
->> 1. 딕셔너리를 이용해 key와 val값 설정을 한다.(아주 쉽게~)
+> * I thought the problem would be easier if I could define a clear start and end city,  
+>   but if a city is visited multiple times, you can’t determine the start and end clearly.  
+>   I ended up spending a lot of time here.
+>   Perhaps the real intent of the problem is not to find explicit start/end points, but to solve it by connecting paths using a **linked-list-like** approach.
+
+---
+
+> ## The Standard Solution
+> * This is a classic DFS + stack problem.
+>> 1. Use a dictionary to build key and value pairs (super easy):
+
 ```python
 for t in tickets:
-        routes[t[0]] = routes.get(t[0], []) + [t[1]]
+    routes[t[0]] = routes.get(t[0], []) + [t[1]]
 ```
 
->> * 정말 심플하게 짯다... 
->> 2. 시작 조건이 ICN으로 고정되게 stack 자료구조 선언, 그리고 stack이 모두 찼을때, 최종경로를 기록할 path도 선언
->> 3. stack에 아무 원소가 없을때까지, 반복!   
+>> * Very simple and clean.
+>> 2. Declare a stack starting with `"ICN"` as the initial condition, and also declare `path` to store the final route when the stack is empty.
+>> 3. Repeat the loop until the stack is empty!
 
-> ## 궁금점
+---
+
+> ## Question
 
 ```python
-
 def solution(tickets):
     answer = []
-    
+
     trip = {}
     for t in tickets:
         trip[t[0]] = trip.get(t[0], []) + [t[1]]
-    
+
     for t in trip:
-        trip[t].sort(reverse = True)
-    
+        trip[t].sort(reverse=True)
+
     print(trip)
-    
+
     stack = ['ICN']
-    
+
     while len(stack) > 0:
         prev = stack[-1]
         if prev not in trip or trip.get(prev) == []:
             break
-        else :
+        else:
             next = trip[prev][-1]
             stack.append(next)
             trip[prev].pop()
-        
+
     return stack
 ```
->> * 이 코드는 왜 작동안해?
+
+>> * Why **doesn't this code work**?
 
 ```python
 def solution(tickets):
     answer = []
-    
+
     trip = {}
     for t in tickets:
         trip[t[0]] = trip.get(t[0], []) + [t[1]]
-    
+
     for t in trip:
-        trip[t].sort(reverse = True)
-    
+        trip[t].sort(reverse=True)
+
     print(trip)
-    
+
     stack = ['ICN']
     path = []
     while len(stack) > 0:
         prev = stack[-1]
         if prev not in trip or trip.get(prev) == []:
             path.append(stack.pop())
-        else :
+        else:
             next = trip[prev][-1]
             stack.append(next)
             trip[prev].pop()
-        
+
     return path[::-1]
 ```
 
->> * 이건 또 작동한단 말이야... 무슨 문제야? 
+>> * But this one **does** work... what’s the issue here?

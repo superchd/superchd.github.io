@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Control/github_io"
+title: "Why learn control?"
 categories : Control 
 tag: [control, loop]
 toc: true
@@ -9,9 +9,6 @@ sidebar:
      nav: "docs/Control"
 ---
 
-### 
-
-# 🔧 Why Do We Learn Control Systems?
 
 Control theory acts as a **unifying framework** across all fields of engineering.  
 By understanding control systems, engineers can model, analyze, and regulate diverse systems to behave in a desired way — even in the presence of disturbances or uncertainties.
