@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Ticket"
-categories : Algorithm/DFS
+categories : Algorithm
 tag: [Algorithm, dfs, programmers]
 toc: true
 author_profile : false
