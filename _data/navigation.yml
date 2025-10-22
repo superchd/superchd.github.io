@@ -36,6 +36,19 @@ docs:
       - title: "Network"
         url: /docs/Network
 
+  - title : "Statistics"
+    children:
+      - title: "Probability"
+        url: /docs/Probability
+      - title: "ROC curve"
+        url: /docs/ROC_Curve
+      - title: "Binominal Distribution"
+        url: /docs/Bionominal_Distribution
+      - title: "Poisson Distribution"
+        url: /docs/Poisson_Distribution
+      - title: "Continuous Probability"
+        url: /docs/Continuous_Probability
+
   - title: "Engineering"
     children:
       - title: "FFT"
